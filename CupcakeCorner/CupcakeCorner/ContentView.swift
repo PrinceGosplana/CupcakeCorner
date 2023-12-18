@@ -8,14 +8,40 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var results = [Result]()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        List(results, id: \.trackId) { item in
+            VStack(alignment: .leading) {
+                Text(item.trackName)
+                    .font(.headline)
+                
+                Text(item.collectionName)
+            }
         }
-        .padding()
+        .task {
+            await loadData()
+        }
+    }
+    
+    private func loadData() async {
+        guard let url = URL(string: "https://itunes.apple.com/search?term=taylor+swift&entity=song") else {
+            print("Invalid URL")
+            return
+        }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            
+            guard let decodeResponse = try? JSONDecoder().decode(Response.self, from: data) else {
+                print("Invalid data decode")
+                return
+            }
+            
+            results = decodeResponse.results
+        } catch {
+            print("Invalid data")
+        }
     }
 }
 
