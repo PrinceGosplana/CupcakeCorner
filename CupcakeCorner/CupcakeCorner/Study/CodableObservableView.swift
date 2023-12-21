@@ -9,7 +9,12 @@ import SwiftUI
 
 struct CodableObservableView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button("Encode Taylor", action: encodeTaylor)
+    }
+    
+    private func encodeTaylor() {
+        let data = try! JSONEncoder().encode(User())
+        let str = String(decoding: data, as: UTF8.self)
     }
 }
 

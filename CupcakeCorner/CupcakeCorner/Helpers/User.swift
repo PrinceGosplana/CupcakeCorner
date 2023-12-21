@@ -8,6 +8,6 @@
 import Foundation
 
 @Observable
-class User {
+class User: Codable {
     var name = "Taylor"
 }
