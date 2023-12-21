@@ -12,9 +12,8 @@ struct HapticEffectsView: View {
     @State private var engine: CHHapticEngine?
     
     var body: some View {
-        Button("Play haptic") {
-            complexSuccess()
-        }
+        Button("Play haptic", action: complexSuccess)
+            .onAppear(perform: prepareHaptics)
     }
     
     private func prepareHaptics() {
