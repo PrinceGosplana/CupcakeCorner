@@ -15,6 +15,7 @@ struct CodableObservableView: View {
     private func encodeTaylor() {
         let data = try! JSONEncoder().encode(User())
         let str = String(decoding: data, as: UTF8.self)
+        print(str)
     }
 }
 
