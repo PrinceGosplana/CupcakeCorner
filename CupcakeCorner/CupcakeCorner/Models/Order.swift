@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-class Order {
+class Order: ObservableObject, Codable {
     static let types = ["Vanilla", "Strawberry", "Chocolate", "Raindow"]
     
     var type = 0
@@ -25,4 +25,9 @@ class Order {
 
     var extraFrosting = false
     var addSprinkles = false
+    
+    var name = ""
+    var streetAddress = ""
+    var city = ""
+    var zip = ""
 }
