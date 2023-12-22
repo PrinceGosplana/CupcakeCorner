@@ -31,6 +31,12 @@ struct CupcakeCornerView: View {
                         Toggle("Add extra sprinkles", isOn: $order.addSprinkles)
                     }
                 }
+                
+                Section {
+                    NavigationLink("Delivery details") {
+                        AddressView(order: order)
+                    }
+                }
             }
             .navigationTitle("Cupcake corner")
         }
