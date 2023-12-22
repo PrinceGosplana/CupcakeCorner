@@ -8,8 +8,20 @@
 import SwiftUI
 
 struct CupcakeCornerView: View {
+    @State private var order = Order()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            Form {
+                Section {
+                    Picker("Select your cake type", selection: $order.type) {
+                        ForEach(Order.types.indices) {
+                            Text(Order.types[$0])
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
